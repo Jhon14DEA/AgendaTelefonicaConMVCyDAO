@@ -5,6 +5,8 @@
  */
 package ec.edu.ups.modelo;
 
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -12,20 +14,31 @@ import java.util.Objects;
  * @author JHON
  */
 public class Usuario {
-   
-   public String cedula;
-    public String nombre;
-    public String apellido;
-    public String correo;
-    public String contrasena;
+
+    private String cedula;
+    private String nombre;
+    private String apellido;
+    private String correo;
+    private String contrasena;
+    //Atributos de agregacion
+    public List<Telefono> telefonos;
+
+    //constructores   
+    public Usuario() {
+        telefonos = new ArrayList<>();
+    }
 
     public Usuario(String cedula, String nombre, String apellido, String correo, String contrasena) {
+        
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
         this.contrasena = contrasena;
+        telefonos = new ArrayList<>();
     }
+
+  
 
     public String getCedula() {
         return cedula;
@@ -67,14 +80,38 @@ public class Usuario {
         this.contrasena = contrasena;
     }
 
+    //metodos de agregacion 
+    public void agregarTelefono(Telefono telefono) {
+        telefonos.add(telefono);
+    }
+
+    public void actualizarTelefono(Telefono telefono) {
+        if (telefonos.contains(telefono)) {
+            int index = telefonos.indexOf(telefono);
+            telefonos.set(index, telefono);
+        }
+    }
+
+    public void eliminarTelefono(Telefono telefono) {
+        if (telefonos.contains(telefono)) {
+            int index = telefonos.indexOf(telefono);
+            telefonos.remove(index);
+        }
+    }
+
+    public List<Telefono> Listar() {
+        return telefonos;
+    }
+
+    public Telefono buscar(int codigo) {
+        return telefonos.get(codigo);
+    }
+
+    //Metodos de la clase Object
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.cedula);
-        hash = 97 * hash + Objects.hashCode(this.nombre);
-        hash = 97 * hash + Objects.hashCode(this.apellido);
-        hash = 97 * hash + Objects.hashCode(this.correo);
-        hash = 97 * hash + Objects.hashCode(this.contrasena);
+        int hash = 3;
+        hash = 67 * hash + Objects.hashCode(this.cedula);
         return hash;
     }
 
@@ -93,25 +130,15 @@ public class Usuario {
         if (!Objects.equals(this.cedula, other.cedula)) {
             return false;
         }
-        if (!Objects.equals(this.nombre, other.nombre)) {
-            return false;
-        }
-        if (!Objects.equals(this.apellido, other.apellido)) {
-            return false;
-        }
-        if (!Objects.equals(this.correo, other.correo)) {
-            return false;
-        }
-        if (!Objects.equals(this.contrasena, other.contrasena)) {
-            return false;
-        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Usuario\n" + "cedula: " + cedula + " nombre: " + nombre +
-                " apellido: " + apellido + " correo: " + correo + " contrasena: " + contrasena ;
+        return "Usuario: \n" + "cedula: " + cedula + "\nnombre: "
+                + nombre + "\napellido: " + apellido + "correo: "
+                + correo + "\ncontrasena: " + contrasena + "\ntelefonos: "
+                + telefonos.toString();
     }
 
 }
