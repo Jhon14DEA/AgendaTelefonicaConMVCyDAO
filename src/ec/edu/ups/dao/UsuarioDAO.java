@@ -63,6 +63,5 @@ public class UsuarioDAO implements IUsuarioDAO {
     public List<Usuario> findAll() {
         return listaUsuario;
     }
-    
-    
+       
 }
