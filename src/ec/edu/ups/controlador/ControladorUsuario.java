@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package ec.edu.ups.controlador;
+
 import ec.edu.ups.dao.UsuarioDAO;
 import ec.edu.ups.dao.TelefonoDAO;
 import ec.edu.ups.idao.IUsuarioDAO;
@@ -40,14 +41,16 @@ public class ControladorUsuario {
         this.usuarioDAO = usuarioDAO;
         this.vistaTelefono = vistaTelefono;
         this.telefonoDAO = telefonoDAO;
-    }
-    
+    }  
+
     //llamar al dao para guardar el usuario
-    public  void  registrar () {
-        usuario = vistaUsuario.ingrUsuario();
-        usuarioDAO.create(usuario);        
-    }/**
-     * 
+    public void registrar() {
+        usuario = vistaUsuario.ingreseUsuario();
+        usuarioDAO.create(usuario);
+    }
+
+    /**
+     *
      */
     //llama al DAO para obtener un cliente por el id y luego los muestra en la vista
     public void verUsuario() {
@@ -55,9 +58,10 @@ public class ControladorUsuario {
         usuario = usuarioDAO.read(1);
         vistaUsuario.verUsuario(usuario);
     }
+
     //llama al DAO para actualizar un cliente
     public void actualizarUsuario() {
-       usuario = vistaUsuario.actualizarUsuario();
+        usuario = vistaUsuario.actualizarUsuario();
         usuarioDAO.update(usuario);
     }
 
@@ -73,15 +77,13 @@ public class ControladorUsuario {
         clientes = usuarioDAO.findAll();
         vistaUsuario.verUsuario(usuario);
     }
-    
+
     //ejemplo de agregacion
-    public void agregarUsuario(){
-        String  cedula = vistaUsuario.buscarUsuario();
+    public void agregarUsuario() {
+        String cedula = vistaUsuario.buscarUsuario();
         telefono = telefonoDAO.read(1);
         usuario.agregarTelefono(telefono);
-        usuarioDAO.update(usuario);        
+        usuarioDAO.update(usuario);
     }
-
-
 
 }
