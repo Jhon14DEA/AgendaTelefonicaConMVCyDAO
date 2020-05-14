@@ -23,7 +23,7 @@ public class VistaUsuario {
 
     public Usuario ingrUsuario() {
         entrada = new Scanner(System.in);
-        System.out.println("_______Ingrese los datos del usuario________");
+        System.out.println("__________Ingrese los datos del usuario________");
         System.out.println("Ingrese el numero de cedula del usuario");
         String cedula = entrada.next();
         System.out.println("Ingrese el nombre del ususario");
