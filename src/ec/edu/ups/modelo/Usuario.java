@@ -137,10 +137,10 @@ public class Usuario {
     @Override
     public String toString() {
         
-        return "Usuario{" + "cedula=" + cedula +
-                ", nombre=" + nombre + ", apellido=" 
-                + apellido + ", correo=" + correo +
-                ", contrase\u00f1a=" + contraseña +
+        return "USUARIO\n" + "cedula:  " + cedula +
+                "\nnombre: " + nombre + "\napellido: " 
+                + apellido + "\ncorreo: " + correo +
+                "\ncontrase\u00f1a: " + contraseña +
                 '}'+ "\nTelefonos: " + telefonos.toString();
     }
 
