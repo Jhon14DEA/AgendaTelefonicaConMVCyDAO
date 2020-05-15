@@ -65,10 +65,10 @@ public class Test {
                                 controladorUsuario.actualizarUsuario();
                                 break;
                             case 3:
-                                controladorUsuario.verUsuario();
+                                controladorUsuario.eliminarUsuario();
                                 break;
                             case 4:
-                                controladorUsuario.eliminarUsuario();
+                                controladorUsuario.actualizarUsuario();
                                 break;
                             case 5:
                             //controladorUsuario.telefo();

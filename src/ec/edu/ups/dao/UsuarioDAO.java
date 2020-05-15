@@ -53,7 +53,7 @@ public class UsuarioDAO implements IUsuarioDAO {
         Iterator<Usuario> it = listaUsuario.iterator();
         while (it.hasNext()) {
             Usuario u = it.next();
-            if (u.getCedula() == usuario.getCedula()) {
+            if (u.getCedula().equals( usuario.getCedula())){
                 it.remove();
                 break;
             }

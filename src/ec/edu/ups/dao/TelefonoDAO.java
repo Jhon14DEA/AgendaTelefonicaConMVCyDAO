@@ -22,7 +22,9 @@ public class TelefonoDAO implements ITelefonoDAO {
     public TelefonoDAO() {
         listaTelefono = new ArrayList<>();
     }
-
+   
+        
+        
     @Override
     public void create(Telefono telefono) {
         listaTelefono.add(telefono);
