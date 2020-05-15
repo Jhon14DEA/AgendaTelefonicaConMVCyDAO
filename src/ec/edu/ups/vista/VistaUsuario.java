@@ -6,8 +6,9 @@
 package ec.edu.ups.vista;
 
 import ec.edu.ups.modelo.Usuario;
-import java.util.Collection;
 import java.util.Scanner;
+import java.util.Collection;
+
 
 /**
  *
@@ -20,24 +21,23 @@ public class VistaUsuario {
     public VistaUsuario() {
         entrada = new Scanner(System.in);
     }
-
+// ███
     public Usuario ingresarUsuario() {
-        System.out.println("_________________Ingrese los datos del usuario_________________");
+        System.out.println("███████████ ╚═Ingrese los datos del usuario══███████████");
         String cedula = entrada.next();
         System.out.println("Ingrese el nombre del ususario");
         String nombre = entrada.next();
         System.out.println("Ingrese el apellido del ususario");
         String apellido = entrada.next();
-        System.out.println("Ingrese eel correo electronico del ususario");
+        System.out.println("Ingrese el correo electronico del ususario");
         String correo = entrada.next();
         System.out.println("Ingrese la contraseÃ±a del ususario");
         String contraseña = entrada.next();
-
         return new Usuario(cedula, nombre, apellido, correo, contraseña);
     }
 
     public Usuario actualizarUsuario() {
-        System.out.println("_________________Ingresa la cedula del cliente a actualizar_________________");
+        System.out.println("███████████╚═Ingresa la cedula del cliente a actualizar══ ███████████ ");
         String cedula = entrada.next();
         System.out.println("Ingrese los nuevos Datos de usuario");
         System.out.println("Ingrese el  nombre del usuario");
@@ -64,17 +64,17 @@ public class VistaUsuario {
     }
 
     public void verUsuario(Usuario usuario) {
-        System.out.println("*******Datos del usuario*******" + usuario);
+        System.out.println("*******Datos del usuario*******\n" + usuario);
     }
 
     public void verUsuarios(Collection<Usuario> usuarios) {
         for (Usuario usuario : usuarios) {
-            System.out.println("*******Datos del los  usuarios*******" + usuario);
+            System.out.println("*******Datos del usuario*******\n" + usuario);
         }
     }
 
     public Usuario iniciarSesion() {
-        System.out.println("Ingrese eel correo electronico del ususario ");
+        System.out.println("Ingrese el correo electronico del ususario");
         String correo = entrada.next();
         System.out.println("Igrese contraseña del usuario");
         String contraseña = entrada.next();
