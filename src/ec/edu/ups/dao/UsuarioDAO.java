@@ -5,11 +5,12 @@
  */
 package ec.edu.ups.dao;
 
+
 import ec.edu.ups.idao.IUsuarioDAO;
 import ec.edu.ups.modelo.Usuario;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -17,52 +18,40 @@ import java.util.List;
  */
 public class UsuarioDAO implements IUsuarioDAO {
 
-    private List<Usuario>listaUsuario;
-    
-    public UsuarioDAO(){
-    listaUsuario = new ArrayList<>();
+    private Map<String, Usuario> listaUsuarios;
+
+    public UsuarioDAO() {
+        listaUsuarios = new HashMap<String, Usuario>();
     }
+    
     @Override
     public void create(Usuario usuario) {
-       listaUsuario.add(usuario);
+       listaUsuarios.put(usuario.getCedula(), usuario);
     }
 
     @Override
-    public Usuario read(int id ) {
-        for (Usuario usuario : listaUsuario) {
-            //
-            if (usuario.getCedula() == usuario.getCedula()) {
-                return usuario;
-            }
-        }
-        return null;
+    public Usuario read(String cedula) {
+        return listaUsuarios.get(cedula);
     }
-
+    
     @Override
     public void update(Usuario usuario) {
-        for (int i = 0; i<listaUsuario.size(); i++){
-        Usuario u = listaUsuario.get(i);
-        if(u.getCedula() == usuario.getCedula()){
-        listaUsuario.set(i,usuario);
-        break;
-        }
-        }
-    }
-    @Override
-    public void delete(Usuario usuario) {
-        Iterator<Usuario> it = listaUsuario.iterator();
-        while (it.hasNext()) {
-            Usuario u = it.next();
-            if (u.getCedula().equals( usuario.getCedula())){
-                it.remove();
-                break;
-            }
-        }
+        listaUsuarios.put(usuario.getCedula(), usuario);
     }
 
     @Override
-    public List<Usuario> findAll() {
-        return listaUsuario;
+    public void delete(Usuario usuario) {
+        listaUsuarios.remove(usuario.getCedula());
     }
-       
+
+    @Override
+    public Collection <Usuario> findAll() {
+        Collection<Usuario> usuarios = this.listaUsuarios.values();
+        return usuarios;
+        
+    }
+
+    
+
+
 }

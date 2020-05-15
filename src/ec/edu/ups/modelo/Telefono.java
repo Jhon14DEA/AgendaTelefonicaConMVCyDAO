@@ -5,36 +5,36 @@
  */
 package ec.edu.ups.modelo;
 
+import java.util.Objects;
+
 /**
  *
  * @author JHON
  */
 public class Telefono {
     
-    private int codigo;
+   private String codigo;
     private String numero;
     private String tipo;
     private String operadora;
 
     public Telefono() {
-
     }
-
-    public Telefono(int codigo, String numero,
-        String tipo, String operadora) {
+    
+    public Telefono(String numero, String tipo, String operadora, String codigo) {
         this.codigo = codigo;
         this.numero = numero;
         this.tipo = tipo;
         this.operadora = operadora;
     }
-
+    
     
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
@@ -64,8 +64,8 @@ public class Telefono {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + this.codigo;
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.codigo);
         return hash;
     }
 
@@ -81,19 +81,19 @@ public class Telefono {
             return false;
         }
         final Telefono other = (Telefono) obj;
-        if (this.codigo != other.codigo) {
+        if (!Objects.equals(this.codigo, other.codigo)) {
             return false;
         }
         return true;
     }
-//El metodo toString es un metodo que se usa para imprimir un objeto
+
+    
+
     @Override
     public String toString() {
-        return "Telefono\n" + "codigo: " + codigo +
-                "\nnumero: " + numero + "\ntipo: " + tipo + 
-                "\noperadora: " + operadora;
+        return "telefono{" + "codigo=" + codigo + ", numero=" + numero + ", tipo=" + tipo + ", operadora=" + operadora + '}';
     }
     
-    
-    
 }
+    
+

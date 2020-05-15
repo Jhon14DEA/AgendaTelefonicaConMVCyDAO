@@ -15,31 +15,26 @@ import java.util.Objects;
  */
 public class Usuario {
 
-    private String cedula;
+   private String cedula;
     private String nombre;
     private String apellido;
     private String correo;
-    private String contrasena;
-    //Atributos de agregacion
-    public List<Telefono> telefonos;
+    private String contraseña;
+    private List<Telefono>telefonos;
 
-    //constructores   
     public Usuario() {
-        telefonos = new ArrayList<>();
+        telefonos= new ArrayList<>();
     }
 
-    public Usuario(String cedula, String nombre, String apellido, String correo, String contrasena) {
-        
-        this.cedula = cedula;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.correo = correo;
-        this.contrasena = contrasena;
-        telefonos = new ArrayList<>();
+    public Usuario(String cedula, String nombre, String apellido, String correo, String contraseña) {
+       this.cedula = cedula;
+       this.nombre = nombre;
+       this.apellido = apellido;
+       this.correo = correo;
+       this.contraseña = contraseña;
+       telefonos=new ArrayList<>();
     }
-
-  
-
+    
     public String getCedula() {
         return cedula;
     }
@@ -72,15 +67,15 @@ public class Usuario {
         this.correo = correo;
     }
 
-    public String getContrasena() {
-        return contrasena;
+    public String getContraseña() {
+        return contraseña;
     }
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
     }
-
-    //metodos de agregacion 
+    
+    //métodos de la agregación
     public void agregarTelefono(Telefono telefono) {
         telefonos.add(telefono);
     }
@@ -99,19 +94,21 @@ public class Usuario {
         }
     }
 
-    public List<Telefono> Listar() {
+    public List<Telefono> listar() {
         return telefonos;
     }
 
     public Telefono buscar(int codigo) {
+
         return telefonos.get(codigo);
+
     }
 
-    //Metodos de la clase Object
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 67 * hash + Objects.hashCode(this.cedula);
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.correo);
+        hash = 97 * hash + Objects.hashCode(this.contraseña);
         return hash;
     }
 
@@ -127,18 +124,25 @@ public class Usuario {
             return false;
         }
         final Usuario other = (Usuario) obj;
-        if (!Objects.equals(this.cedula, other.cedula)) {
+        if (!Objects.equals(this.correo, other.correo)) {
+            return false;
+        }
+        if (!Objects.equals(this.contraseña, other.contraseña)) {
             return false;
         }
         return true;
     }
-
+    
+    
     @Override
     public String toString() {
-        return "  USUARIO: \n" + "cedula: " + cedula + "\nnombre: "
-                + nombre + "\napellido: " + apellido + "correo: "
-                + correo + "\ncontrasena: " + contrasena + "\ntelefonos: "
-                + telefonos.toString();
+        
+        return "Usuario{" + "cedula=" + cedula +
+                ", nombre=" + nombre + ", apellido=" 
+                + apellido + ", correo=" + correo +
+                ", contrase\u00f1a=" + contraseña +
+                '}'+ "\nTelefonos: " + telefonos.toString();
     }
 
+    
 }

@@ -11,6 +11,7 @@ import ec.edu.ups.dao.UsuarioDAO;
 import ec.edu.ups.dao.TelefonoDAO;
 import ec.edu.ups.vista.VistaUsuario;
 import ec.edu.ups.vista.VistaTelefono;
+import ec.edu.ups.modelo.Usuario;
 import java.util.Scanner;
 
 /**
@@ -20,6 +21,7 @@ import java.util.Scanner;
 public class Test {
 
     public static void main(String[] args) {
+
         Scanner entrada = new Scanner(System.in);
         boolean menu = true;
         System.out.println("📱 📱 📱 📱 ✆AGENDA TELEFONICA✆ 📱 📱 📱 📱");
@@ -30,73 +32,108 @@ public class Test {
                     + "3: Listar Telefonos.\n"
                     + "4: Listar telefono\n"
                     + "5: Salir\n\n");
-            //vista
-            VistaUsuario vistaUsuario = new VistaUsuario();
-            VistaTelefono vistaTelefono = new VistaTelefono();
-            //daos
+
+            VistaUsuario vista = new VistaUsuario();
+            VistaTelefono vistaT = new VistaTelefono();
             UsuarioDAO usuarioDAO = new UsuarioDAO();
             TelefonoDAO telefonoDAO = new TelefonoDAO();
+            ControladorUsuario controladorUsuario = new ControladorUsuario(vista, vistaT, usuarioDAO, telefonoDAO);
+            ControladorTelefono controladorTelefono = new ControladorTelefono(vistaT, telefonoDAO);
 
-            ControladorUsuario controladorUsuario = new ControladorUsuario(vistaUsuario, vistaTelefono, usuarioDAO, telefonoDAO);
             int numero = entrada.nextInt();
             switch (numero) {
-                //El usuario podra registrarce
                 case 1:
-                    //guarda un cliente atraves del controlador
+                    System.out.println("---Registrar Usuario---");
                     controladorUsuario.registrar();
-                    // controladorUsuario.verUsuario();
+                    System.out.println("Usuarios Registrados");
+                    controladorUsuario.verUsuarios();
                     break;
-                //Iniciar sesion con su correo y contraseña
+
                 case 2:
-                    boolean submenu = true;
-                    while (submenu) {
-                        System.out.println("╠░░░░░░ -INICIAR SESION- ░░░░░░");
+                    System.out.println("---Iniciar Secion---");
+                    String cedula = verificarSesion();
+                    if (cedula == null) {
+                        break;
+                    }
+                    boolean salir = false;
+                    while (salir == false) {
+                        System.out.println("-INICIAR SESION- â–‘â–‘â–‘â–‘â–‘â–‘");
                         System.out.println("1: Registrar\n"
                                 + "2: Modificar.\n"
                                 + "3: eliminar.\n"
                                 + "4: buscar.\n"
-                                + "5: listar sus teléfon.\n"
+                                + "5: listar sus telÃ©fon.\n"
                                 + "6: Salir");
-                        switch (numero) {
+
+                        int respuesta2 = entrada.nextInt();
+
+                        switch (respuesta2) {
                             case 1:
-                                controladorUsuario.agregarUsuario();
+                                System.out.println("---Registrar telefono---");
+                                controladorTelefono.registrar();
+                                controladorUsuario.agregarTelefono(cedula);
                                 break;
                             case 2:
-                                controladorUsuario.actualizarUsuario();
+                                System.out.println("---Modificar telefono---");
+                                controladorTelefono.actualizar();
+                                controladorUsuario.actualizarTelefono(cedula);
                                 break;
                             case 3:
-                                controladorUsuario.eliminarUsuario();
+                                System.out.println("---Eliminar telefono---");
+                                controladorTelefono.eliminar();
+                                controladorUsuario.eleiminarTelefono(cedula);
                                 break;
                             case 4:
-                                controladorUsuario.actualizarUsuario();
+                                System.out.println("---Buscar telefono---");
+                                controladorUsuario.buscarTelefono(cedula);
                                 break;
                             case 5:
-                            //controladorUsuario.telefo();
-                            case 6:
-                                submenu = false;
+                                System.out.println("---Lista de telefonos del usuario---");
+                                controladorUsuario.listaTelefonos(cedula);
                                 break;
-                            default:
-                                System.out.println("Opcion incorrecta");
+                            case 6:
+                                System.out.println("---Salir---");
+                                salir = true;
                                 break;
                         }
                     }
 
                     break;
                 case 3:
-                    //Listar los numeros de telefono de un usuario usando su numero de cedula
-
+                    System.out.println("---Lista de telefonos---");
+                    controladorTelefono.verTelefonos();
                     break;
                 case 4:
+                    System.out.println("---Lista de Usuarios---");
                     controladorUsuario.verUsuarios();
-
+                    break;
                 case 5:
-                    System.out.println("Fin del algoritmo");
-                    menu = false;
+                    System.out.println("---Fin del programa---");
+                    menu = true;
                     break;
-                default:
-                    System.out.println("Opcion incorrecta");
-                    break;
+
             }
+             
+    }
+          
+
+}   
+    public static String verificarSesion() {
+        Usuario usuario = new Usuario();
+        VistaUsuario vista = new VistaUsuario();
+        VistaTelefono vistaT = new VistaTelefono();
+        TelefonoDAO telefonoDAO = new TelefonoDAO();
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        ControladorUsuario controladorUsuario = new ControladorUsuario(vista, vistaT, usuarioDAO, telefonoDAO);
+         Usuario usuario1 = controladorUsuario.verificar();
+        if (usuario1 == null) {
+            return null;
+        } else {
+            return usuario1.getCedula();
         }
     }
 }
+
+    
+    
+

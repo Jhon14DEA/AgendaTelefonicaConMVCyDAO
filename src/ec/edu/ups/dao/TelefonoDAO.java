@@ -5,68 +5,48 @@
  */
 package ec.edu.ups.dao;
 
+
 import ec.edu.ups.idao.ITelefonoDAO;
 import ec.edu.ups.modelo.Telefono;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 /**
  *
- * @author JHON
+ * @author NANCY
  */
 public class TelefonoDAO implements ITelefonoDAO {
 
-    private List<Telefono> listaTelefono;
+    private Map<String, Telefono> listaTelefonos;
 
+    //Constructor
     public TelefonoDAO() {
-        listaTelefono = new ArrayList<>();
+        listaTelefonos = new HashMap<String, Telefono>();
     }
-   
-        
-        
     @Override
     public void create(Telefono telefono) {
-        listaTelefono.add(telefono);
+        listaTelefonos.put(telefono.getCodigo(), telefono);
     }
-
+    
     @Override
-    public Telefono read(int id) {
-        for (Telefono telefono : listaTelefono) {
-            if (telefono.getCodigo() == id) {
-                return telefono;
-            }
-        }
-        return null;
+    public Telefono read(String codigo) {
+        return listaTelefonos.get(codigo);
     }
+   
 
     @Override
     public void update(Telefono telefono) {
-        for (int i = 0; i < listaTelefono.size(); i++) {
-            Telefono t = listaTelefono.get(i);
-            if (t.getCodigo() == telefono.getCodigo()) {
-                listaTelefono.set(i, telefono);
-                break;
-            }
-        }
+        listaTelefonos.put(telefono.getCodigo(), telefono);
     }
 
     @Override
     public void delete(Telefono telefono) {
-        Iterator<Telefono> it = listaTelefono.iterator();
-        while (it.hasNext()) {
-            Telefono t = it.next();
-            if (t.getCodigo() == telefono.getCodigo()) {
-                it.remove();
-                break;
-            }
-        }
+        listaTelefonos.remove(telefono.getCodigo());
     }
 
     @Override
-    public List<Telefono> findAll() {
-        return listaTelefono;
-
+    public Collection <Telefono> findAll() {
+        Collection<Telefono> telefonos =this.listaTelefonos.values();
+        return telefonos;
     }
-
 }
