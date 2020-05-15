@@ -61,7 +61,7 @@ public class VistaUsuario {
 
     public String buscarUsuario() {
         entrada = new Scanner(System.in);
-        System.out.println("Ingrese el numero de cedula del cliente a buscar");
+        System.out.println("Ingrese el numero de cedula del usuario a buscar");
         String cedula = entrada.next();
         return cedula;
     }

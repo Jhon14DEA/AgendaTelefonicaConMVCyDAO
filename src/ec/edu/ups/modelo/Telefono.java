@@ -86,7 +86,7 @@ public class Telefono {
         }
         return true;
     }
-
+//El metodo toString es un metodo que se usa para imprimir un objeto
     @Override
     public String toString() {
         return "Telefono\n" + "codigo: " + codigo +

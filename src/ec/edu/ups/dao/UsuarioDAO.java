@@ -30,6 +30,7 @@ public class UsuarioDAO implements IUsuarioDAO {
     @Override
     public Usuario read(int id ) {
         for (Usuario usuario : listaUsuario) {
+            //
             if (usuario.getCedula() == usuario.getCedula()) {
                 return usuario;
             }

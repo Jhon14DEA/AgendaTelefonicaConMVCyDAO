@@ -135,7 +135,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario: \n" + "cedula: " + cedula + "\nnombre: "
+        return "  USUARIO: \n" + "cedula: " + cedula + "\nnombre: "
                 + nombre + "\napellido: " + apellido + "correo: "
                 + correo + "\ncontrasena: " + contrasena + "\ntelefonos: "
                 + telefonos.toString();
