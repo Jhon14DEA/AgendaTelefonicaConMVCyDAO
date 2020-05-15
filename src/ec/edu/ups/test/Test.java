@@ -24,7 +24,7 @@ public class Test {
 
         Scanner entrada = new Scanner(System.in);
         boolean menu = true;
-        System.out.println("📱 📱 📱 📱 ✆AGENDA TELEFONICA✆ 📱 📱 📱 📱");
+        System.out.println("📱 📱 📱 📱 📱 📱 📱 📱 ✆AGENDA TELEFONICA✆ 📱 📱 📱 📱 📱 📱 📱 📱");
         while (menu) {
             System.out.println("\n✆✆✆✆✆✆✆ MENU ✆✆✆✆✆✆✆");
             System.out.println("1: Registrarce.\n"
@@ -43,72 +43,73 @@ public class Test {
             int numero = entrada.nextInt();
             switch (numero) {
                 case 1:
-                    System.out.println("---Registrar Usuario---");
+                    System.out.println("░░░░░░░░░░░░░░░░  REGISTRAR USUARIO ░░░░░░░░░░░░░░░░");
                     controladorUsuario.registrar();
-                    System.out.println("Usuarios Registrados");
                     controladorUsuario.verUsuarios();
                     break;
 
                 case 2:
-                    System.out.println("---Iniciar Secion---");
+                    System.out.println(" ░░░░░░░░░░░░░░░░ INICIAR SESION ░░░░░░░░░░░░░░░░");
                     String cedula = verificarSesion();
                     if (cedula == null) {
                         break;
+                        
+                    }else{ 
+                        System.out.println("Usuario y contraseña incorrecta");
                     }
-                    boolean salir = false;
-                    while (salir == false) {
-                        System.out.println("-INICIAR SESION- â–‘â–‘â–‘â–‘â–‘â–‘");
-                        System.out.println("1: Registrar\n"
+                    boolean opcion = false;
+                    while (opcion == false) {
+                         System.out.println("1: Registrar\n"
                                 + "2: Modificar.\n"
                                 + "3: eliminar.\n"
                                 + "4: buscar.\n"
-                                + "5: listar sus telÃ©fon.\n"
+                                + "5: listar sus telefonos.\n"
                                 + "6: Salir");
 
-                        int respuesta2 = entrada.nextInt();
+                        int menu2 = entrada.nextInt();
 
-                        switch (respuesta2) {
+                        switch (menu2) {
                             case 1:
-                                System.out.println("---Registrar telefono---");
+                                System.out.println("←←←←←←←←←←←← REGISTRAR  ←←←←←←←←←←←←\n");
                                 controladorTelefono.registrar();
                                 controladorUsuario.agregarTelefono(cedula);
                                 break;
                             case 2:
-                                System.out.println("---Modificar telefono---");
+                                System.out.println("←←←←←←←←←←←← MODIFICAR  ←←←←←←←←←←←←\n");
                                 controladorTelefono.actualizar();
                                 controladorUsuario.actualizarTelefono(cedula);
                                 break;
                             case 3:
-                                System.out.println("---Eliminar telefono---");
+                                System.out.println("←←←←←←←←←←←← ELIMINAR ←←←←←←←←←←←←\n");
                                 controladorTelefono.eliminar();
                                 controladorUsuario.eleiminarTelefono(cedula);
                                 break;
                             case 4:
-                                System.out.println("---Buscar telefono---");
+                                System.out.println("←←←←←←←←←←←← BUSCAR ←←←←←←←←←←←←\n");
                                 controladorUsuario.buscarTelefono(cedula);
                                 break;
                             case 5:
-                                System.out.println("---Lista de telefonos del usuario---");
+                                System.out.println("←←←←←←←←←←←← Lista de telefonos del usuario ←←←←←←←←←←←←\n");
                                 controladorUsuario.listaTelefonos(cedula);
                                 break;
                             case 6:
-                                System.out.println("---Salir---");
-                                salir = true;
+                                System.out.println("Salir");
+                                opcion = true;
                                 break;
                         }
                     }
 
                     break;
                 case 3:
-                    System.out.println("---Lista de telefonos---");
+                    System.out.println("✆✆✆✆✆✆✆ Lista de telefonos ✆✆✆✆✆✆✆\n");
                     controladorTelefono.verTelefonos();
                     break;
                 case 4:
-                    System.out.println("---Lista de Usuarios---");
+                    System.out.println("✆✆✆✆✆✆✆ Lista de Usuarios ✆✆✆✆✆✆✆\n");
                     controladorUsuario.verUsuarios();
                     break;
                 case 5:
-                    System.out.println("---Fin del programa---");
+                    System.out.println(" END ");
                     menu = true;
                     break;
 
@@ -125,11 +126,12 @@ public class Test {
         TelefonoDAO telefonoDAO = new TelefonoDAO();
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         ControladorUsuario controladorUsuario = new ControladorUsuario(vista, vistaT, usuarioDAO, telefonoDAO);
-         Usuario usuario1 = controladorUsuario.verificar();
-        if (usuario1 == null) {
+         Usuario usuarion = controladorUsuario.verificar();
+        if (usuarion == null) {
             return null;
+            
         } else {
-            return usuario1.getCedula();
+            return usuarion.getCedula();
         }
     }
 }
